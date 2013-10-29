@@ -13,4 +13,9 @@ describe 'black hole null object' do
     expect(null.foobaz).to be(null)
     expect(null << "bar").to be(null)
   end
+  
+  it 'returns callstack from arbitray method calls' do
+    expect(null.down.the.rabbit.hole.__callstack__).to eq [:down, :the, :rabbit, :hole]
+  end
+
 end

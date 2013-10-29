@@ -163,7 +163,8 @@ module Naught
 
     def stub_method_returning_self(subject, name)
       subject.module_eval do
-        define_method(name) {|*| self }
+        define_method('__callstack__') { @callstack ||=[]; @callstack}
+        define_method(name) {|*args| __callstack__.push(args.first); self }
       end
     end
 
