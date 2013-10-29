@@ -15,7 +15,11 @@ describe 'black hole null object' do
   end
   
   it 'returns callstack from arbitray method calls' do
-    expect(null.down.the.rabbit.hole.__callstack__).to eq [:down, :the, :rabbit, :hole]
+    expect(null.down.the.rabbit.hole.__callstack__).to eq [[:down, nil], [:the, nil], [:rabbit, nil], [:hole, nil]]
+  end
+
+  it 'returns callstack from array element calls' do
+    expect(null.down['bats'].__callstack__).to eq([[:down, nil], [:[],'bats']])
   end
 
 end
